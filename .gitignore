@@ -8,3 +8,4 @@ dist
 cover
 *.egg
 .tox/
+.idea/

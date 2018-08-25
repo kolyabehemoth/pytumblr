@@ -108,7 +108,7 @@ class TumblrRestClient(object):
         :returns: a dict created from the JSON response
         """
         kwargs.update({'tag': tag})
-        return self.send_api_request("get", '/v2/tagged', kwargs, ['before', 'limit', 'filter', 'tag', 'api_key'], True)
+        return self.send_api_request("get", '/v2/tagged', kwargs, ['before', 'limit', 'filter', 'tag'], True)
 
     @validate_blogname
     def posts(self, blogname, type=None, **kwargs):
@@ -130,7 +130,7 @@ class TumblrRestClient(object):
             url = '/v2/blog/{0}/posts'.format(blogname)
         else:
             url = '/v2/blog/{0}/posts/{1}'.format(blogname, type)
-        return self.send_api_request("get", url, kwargs, ['id', 'tag', 'limit', 'offset', 'reblog_info', 'notes_info', 'filter', 'api_key'], True)
+        return self.send_api_request("get", url, kwargs, ['id', 'tag', 'limit', 'offset', 'reblog_info', 'notes_info', 'filter', 'api_key', 'before'], True)
 
     @validate_blogname
     def blog_info(self, blogname):
@@ -219,7 +219,7 @@ class TumblrRestClient(object):
         :returns: a dict created from the JSON response
         """
         url = "/v2/blog/{0}/posts/draft".format(blogname)
-        return self.send_api_request("get", url, kwargs, ['filter'])
+        return self.send_api_request("get", url, kwargs, ['filter', 'before_id'])
 
     @validate_blogname
     def submission(self, blogname, **kwargs):
